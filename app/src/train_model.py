@@ -16,6 +16,7 @@ logging.basicConfig(
 
 logging.info("Reading file with DNA chains")
 sequences = utils.read_dataset_file(constants.DATASET_PATH)
+# sequences = utils.read_dataset_file(r"app/dataset/mart_export.txt")
 
 # Take part of all
 sequences = sequences[: int(len(sequences) / 20)]
@@ -40,6 +41,7 @@ trainer = Trainer(
     devices="auto",
     accelerator="auto",
     callbacks=[checkpoint_callback],
+    logger=False,
     fast_dev_run=False,
 )
 trainer.fit(NN_model, train_loader)
